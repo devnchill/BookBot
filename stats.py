@@ -1,12 +1,13 @@
 import string
+from operator import itemgetter
 
 
-def get_num_words(file_contents):
+def total_words(file_contents):
     no_of_words = len(file_contents.split())
     return no_of_words
 
 
-def count_char(file_contents):
+def chars_frequency(file_contents):
     file_contents = file_contents.lower()
     d = dict.fromkeys(string.ascii_lowercase, 0)
     for char in file_contents:
@@ -15,3 +16,11 @@ def count_char(file_contents):
         else:
             d[char] = 0
     return d
+
+
+def sort_dict(dict):
+    char_list = []
+    for char, count in dict.items():
+        char_list.append({"alphabet": char, "count": count})
+    char_list.sort(key=itemgetter("count"), reverse=True)
+    return char_list
